@@ -1,2 +1,4 @@
 pytest
 playwright
+# learn to use [poetry](https://python-poetry.org/docs/)
+# requirements.txt is a recipe for dependency hell
