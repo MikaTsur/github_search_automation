@@ -1,22 +1,36 @@
-from playwright.sync_api import sync_playwright
+# tests/test_github_login.py
 
-def goto_website():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+import pytest
+from playwright.sync_api import sync_playwright
+import page_objects.login
+config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.ini')
+login_manager = LoginManager(config_path)
+config = login_manager.config.config  # Accessing the config directly from LoginManager
+
+class TestGithubLogin:
+    @pytest.fixture(scope="class")
+    def playwright_browser(self):
+        with sync_playwright() as p:
+            yield p
+
+    @pytest.fixture(scope="class")
+    def browser_context(self, playwright_browser):
+        browser = playwright_browser.chromium.launch(headless=False)
         context = browser.new_context()
-        page = context.new_page()
-        page.goto('https://github.com/')
-        perform_login(page)
-        page.pause()
+        yield context
         browser.close()
 
-def perform_login(page):
-    page.get_by_role("link", name="Sign in").click()
-    page.get_by_label("Username or email address").click()
-    page.get_by_label("Username or email address").fill("mikatsurtest")
-    page.get_by_label("Password").click()
-    page.get_by_label("Password").fill("Github-1!")
-    page.get_by_role("button", name="Sign in", exact=True).click()
+    @pytest.fixture(scope="class")
+    def login_page(self, browser_context):
+        page = browser_context.new_page()
+        page.goto(config['github']['base_url'])
+        yield page
+        page.close()
 
-if __name__ == "__main__":
-    goto_website()
+    def test_verify_github_login(self, login_page):
+        username, password, _ = login_manager.config.get_credentials()
+        login_manager.perform_login(login_page, username, password)
+        
+        # Verify login success
+        profile_icon = login_page.locator("avatar-user")
+        assert profile_icon.is_visible(), "Login failed: Profile icon not visible"
