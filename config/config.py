@@ -3,6 +3,10 @@ import yaml
 from box import Box
 import os
 
+# an easier way to do this is to use a combination of yaml with python-box
+# you can replace this entire class by two lines
+# dictionary = yaml.load(open('config.yaml'))
+# config = box.Box(dictionary)
 class Config:
     def __init__(self, config_path):
         with open(config_path, 'r') as file:
