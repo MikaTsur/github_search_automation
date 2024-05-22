@@ -1,6 +1,9 @@
 #automation_tests\tests\test_github_search.py
 import pytest
 from pages.github_search_page import GitHubSearchPage
+import logging
+
+
 
 def test_search_functionality(page, config):
     github_search_url = config.get_github_search_url()
