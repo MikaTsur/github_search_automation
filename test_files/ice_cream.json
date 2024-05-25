@@ -1,0 +1,54 @@
+{
+  "dairy": {
+    "origin": "Cow Milk",
+    "nutritional_value": {
+      "calories": 250,
+      "fat": "14g",
+      "protein": "5g"
+    },
+    "flavors": [
+      {
+        "flavor": "Salty Caramel",
+        "color": "Golden Brown",
+        "taste": "Salty and Sweet",
+        "price": 5.0,
+        "customer_satisfaction": 4.7,
+        "description": "Rich and creamy with a hint of sea salt."
+      },
+      {
+        "flavor": "Kinder",
+        "color": "Light Brown",
+        "taste": "Chocolate and Hazelnut",
+        "price": 5.5,
+        "customer_satisfaction": 4.8,
+        "description": "Creamy with chunks of Kinder chocolate."
+      }
+    ]
+  },
+  "fruits": {
+    "origin": "Mixed Fruits",
+    "nutritional_value": {
+      "calories": 200,
+      "fat": "10g",
+      "protein": "3g"
+    },
+    "flavors": [
+      {
+        "flavor": "Coconut",
+        "color": "White",
+        "taste": "Tropical",
+        "price": 5.25,
+        "customer_satisfaction": 4.6,
+        "description": "Refreshing coconut flavor."
+      },
+      {
+        "flavor": "Berries",
+        "color": "Red",
+        "taste": "Tart and Sweet",
+        "price": 5.25,
+        "customer_satisfaction": 4.5,
+        "description": "A mix of berry flavors with a tart and sweet taste."
+      }
+    ]
+  }
+}
