@@ -1,6 +1,7 @@
 import pytest
 import json
 import logging
+import test_files
 
 # some_json = {
 #   "name": "John Doe",
@@ -194,6 +195,58 @@ for key, value in morell.items():  #
 logging.info(f'xxxxxxxxxxxxxxxx{child1}')
 logging.info(f'xxxxxxxxxxxxxxxx{child2}')
 
+abc1 = []
+abc2 = []
+
+tsur = {
+    'Liat':'grenpa',
+    'child':{
+        'mika':'girl',
+        'matan': 'boy'
+    }}
+
+for key, value in tsur.items():
+    if isinstance(value, dict):
+        for key1_0, value1_0 in value.items():
+            abc1.append(key1_0)
+            abc2.append(value1_0)
+
+logging.info(f'ttttttttttttttttttttt{abc1}')
+logging.info(f'ttttttttttttttttttttt{abc2}')
+
+ice_cream1 = []
+ice_cream2= []
+
+ice_cream = {
+    'dairy':'milk',
+    'fruits':{
+        'coconuts':'white'
+    }
+}
+for key, value in ice_cream.items():
+    if isinstance(value, dict):
+        for key1, value2 in value.items():
+            ice_cream1.append(key1)
+            ice_cream2.append(value2)
+
+logging.info(f'ttttttttttttttttttttt{ice_cream1}')
+logging.info(f'ttttttttttttttttttttt{ice_cream2}')
+
+jjj1 = ""
+jjj2 = ""
+
+json_1 = {
+
+    "1","1",
+    "2",{
+        "3":3
+    }}
+for key, value in json_1.items():
+    if isinstance(value, dict):
+        for key1, value1 in value.items():
+            jjj1.append(key1)
+            jjj2.append(key1)
+logging.info(jjj1)
+logging.info(jjj2)
 
 
-   

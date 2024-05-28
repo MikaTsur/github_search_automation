@@ -20,4 +20,3 @@ def page(browser):
 @pytest.fixture(scope="session")
 def config():
     return Config('config/config.yaml')
-
