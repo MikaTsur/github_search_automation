@@ -1,16 +1,20 @@
+import logging
 import string
 import time
 
 from playwright.sync_api import sync_playwright
 import random
 
+
 def generate_random_string(length=5):
     letters = string.ascii_letters
     return ''.join(random.choice(letters) for i in range(length))
 
+
 def click_and_fill(page, placeholder, text):
     page.get_by_placeholder(placeholder).click()
     page.get_by_placeholder(placeholder).fill(text)
+
 
 def test_table():
     with (sync_playwright() as p):
@@ -37,13 +41,23 @@ def test_table():
         click_and_fill(page, "Department", department)
         page.get_by_role('button', name='Submit').click()
 
-
-        assert page.get_by_role('gridcell',name=first_name).first.is_visible(),f"First Name {first_name} is not visible in the grid."
-        assert page.get_by_role('gridcell',name=last_name).is_visible(), f"Last Name {last_name} is not visible in the grid."
+        time.sleep(1)
+        assert page.get_by_role('gridcell',
+                                name=first_name).first.is_visible(), f"First Name {first_name} is not visible in the grid."
+        assert page.get_by_role('gridcell',
+                                name=last_name).is_visible(), f"Last Name {last_name} is not visible in the grid."
         assert page.get_by_role('gridcell', name=email).is_visible(), f"Email {email} is not visible in the grid."
         assert page.get_by_role('gridcell', name=age).is_visible(), f"Age {age} is not visible in the grid."
         assert page.get_by_role('gridcell', name=salary).is_visible(), f"Salary {salary} is not visible in the grid."
-        assert page.get_by_role('gridcell',name=department).is_visible(), f"Department {department} is not visible in the grid."
+        assert page.get_by_role('gridcell',
+                                name=department).is_visible(), f"Department {department} is not visible in the grid."
+
+        logging.info(f"First Name {first_name} is visible in the grid.")
+        logging.info(f"Last Name {last_name} is visible in the grid.")
+        logging.info(f"Email {email} is visible in the grid.")
+        logging.info(f"Age {age} is visible in the grid.")
+        logging.info(f"Salary {salary} is not visible in the grid.")
+        logging.info(f"Department {department} is not visible in the grid.")
 
 # if __name__ == "__main__":
 #     test_table()
