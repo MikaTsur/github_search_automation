@@ -15,7 +15,26 @@ def test_hover():
         tooltip = page.locator("table.tooltip")
         tooltip.wait_for(state='visible')
         value_text = tooltip.locator("td:has(span)").nth(1).inner_text()
-        value = value_text.split(';')[-1].strip()  # Extract the numeric value
+        value = value_text.split(';')[-1].strip()
         logging.info(f"Extracted value: {value}")
+        page.pause()
+        values = []
+
+        hover_locator = page.locator(".highcharts-point")
+
+        for i in range(10):
+            point = hover_locator.nth(i)
+            point.hover()
+            tooltip.wait_for(state='visible')
+            value_text = tooltip.locator("td:has(span)").nth(1).inner_text()
+            value = value_text.split(';')[-1].strip()
+            values.append(value)
+            logging.info(f"Extracted value from point {i + 1}: {value}")
+
+        # Assert how many values start with 'c'
+        c_count = sum(1 for v in values if v.lower().startswith('c'))
+        logging.info(f"Number of values starting with 'c': {c_count}")
+        assert c_count > 0, "No values start with 'c'"
+
         page.pause()
 
