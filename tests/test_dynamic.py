@@ -1,8 +1,8 @@
+# C:\Users\morellyo\Desktop\python\automation_tests\tests\test_dynamic.py
 import logging
 import requests
 from datetime import datetime
 from playwright.sync_api import sync_playwright
-
 
 
 def test_api_dy_only():
@@ -59,9 +59,3 @@ def test_table():
         assert len(citizenship_elements) == 2, f"Expected 2 citizenships, but found {len(citizenship_elements)}"
 
         logging.info(f'Citizenship elements: {citizenship_elements}')
-
-
-
-
-
-
